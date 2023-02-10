@@ -1,4 +1,4 @@
-//pass by value means copy of actual variable gets credated in function .
+//pass by value means copy of actual variable gets created in function .
 
 #include<bits/stdc++.h>
 using namespace std;
