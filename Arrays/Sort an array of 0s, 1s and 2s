@@ -1,0 +1,31 @@
+class Solution
+{
+    public:
+    void sort012(int a[], int n)
+    {
+        // code here 
+        int i=0;
+        int start=0;int end=n-1;
+        while(i<=end){
+            //agar a[i] o hai to usko start me rkhna hai to usko start se wap kar denge then 
+            //i and start ko aage badha denge
+            if(a[i]==0){
+                swap(a[start],a[i]);
+                i++;start++;
+            }
+            //agar a[i] 2 hai to usko end me rakhna hai to usko end se swap kar denge then end--
+            //kar denge is case me end ke jagh to 2 chala jayega but i ke kaun si value aayegi
+            //pata nahi hai to is case me i++ nahi karenge;
+            else if(a[i]==2){
+                swap(a[end],a[i]);
+                end--;
+            }
+            //agar 1 milta hai to simply kuchh nahi karna hai because 1 ko beech me rakhna hai 
+            //so in thiss case simply i++ kar denge;
+            else{
+                i++;
+            }
+        }
+    }
+    
+};
