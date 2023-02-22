@@ -1,0 +1,49 @@
+class Solution{
+    public:
+    string calc_Sum(int *a,int n,int *b,int m){
+    // Complete the function
+    int i=n-1;
+    int j=m-1;
+    int carry=0;
+    string ans="";
+    while(i>=0&&j>=0){
+        int g=a[i]+b[j]+carry;
+        int k=g%10;
+        ans.push_back(k+'0');//since string is the array of characters  so usme number push karne ke liye + '0' karenge; 
+        carry=g/10;
+        i--;
+        j--;
+    }
+    
+    //agar pahle array ka size second array se jyada ho tab 
+    while(i>=0){
+      int g=a[i]+0+carry;
+        int k=g%10;
+        ans.push_back(k+'0');
+        carry=g/10;
+        i--;
+        j--;  
+    }
+   // agar second array ka size first array se jyada ho tab
+    while(j>=0){
+        int g=0+b[j]+carry;
+        int k=g%10;
+        ans.push_back(k+'0');
+        carry=g/10;
+        i--;
+        j--;
+    }
+    //pura sum karne ke baad agar carry bachta hai to use bhi dalna hoga first place par
+if(carry){
+    ans.push_back(carry+'0');
+}
+
+//since our return type is string so jab usko reverse karke final ans prin karenge to first place par 0 bhi aa jayega so we have to remove that;
+    while(ans[ans.size()-1]=='0'){
+        ans.pop_back();
+    }
+    
+    reverse(ans.begin(),ans.end());
+    return ans;
+    }
+};
