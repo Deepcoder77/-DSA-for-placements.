@@ -52,5 +52,8 @@ en=mide-1;
         l.push_back(a);
         l.push_back(b);
         return l;
+        
+        //total occurance
+        int total=b-a+1;  //if total occurance ask then this has to return; 
     }
 };
