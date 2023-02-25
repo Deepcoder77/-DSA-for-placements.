@@ -1,0 +1,26 @@
+class Solution {
+public:
+
+ int findpeakelement(vector<int>v){
+     int s=0;
+     int e=v.size()-1;
+     int mid=s+(e-s)/2;
+     while(s<e){
+         if(v[mid]<v[mid+1]){
+             s=mid+1;
+
+         }
+         else{
+             e=mid;//is case me hamara v[mid] jo hoga vo v[mid-1] se bada hoga to ye ek possible ans ho sakta hai isliye ham e=mid-1 nahi karenge
+             //because aisa karne par hamara peak element chhut sakta hai
+         }
+         mid=s+(e-s)/2;  //mid ko update karna mat bhulo
+         
+     }
+     return s;
+ }
+    int peakIndexInMountainArray(vector<int>& arr) {
+        int ans=findpeakelement(arr);
+        return ans;
+    }
+};
