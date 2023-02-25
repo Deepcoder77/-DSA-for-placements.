@@ -1,0 +1,56 @@
+class Solution {
+public:
+
+int firstoccurance(vector<int>v,int target){
+    int s=0;
+    int e=v.size()-1;
+    int mid=s+(e-s)/2;
+    int ans=-1;
+    while(s<=e){
+        if(v[mid]==target){
+            ans=mid; //yaha par mid hamara ans ho sakta hai to usko store kar lenge but ham fist occurance find kar rahe hai to jabtak array ka size
+            //1 nahi ho jata tab tak mid ke left me bhi first occurance mil sakta hai to isliye ham e=mid-1 karenge target milne ke baad bhi;
+            e=mid-1;
+        }
+        else if(v[mid]<target){
+            s=mid+1;
+        }
+        else if(v[mid]>target){
+e=mid-1;
+        }
+        mid=s+(e-s)/2;
+    }
+    return ans;
+}
+
+
+int lastoccurance(vector<int>vec,int target){
+    int st=0;
+    int en=vec.size()-1;
+    int mide=st+(en-st)/2;
+    int ans1=-1;
+    while(st<=en){
+        if(vec[mide]==target){
+            ans1=mide;
+            st=mide+1;//yaha par mid hamara ans ho sakta hai to usko store kar lenge but ham last occurance find kar rahe hai to jabtak array ka size
+            //1 nahi ho jata tab tak mid ke right me bhi last occurance mil sakta hai to isliye ham st=mide+1 karenge target milne ke baad bhi;
+        }
+        else if(vec[mide]<target){
+            st=mide+1;
+        }
+        else if(vec[mide]>target){
+en=mide-1;
+        }
+        mide=st+(en-st)/2; //mid ko update karna na bhule after the iteration
+    }
+    return ans1;
+}
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int>l;
+        int a=firstoccurance(nums,target);
+        int b=lastoccurance(nums,target);
+        l.push_back(a);
+        l.push_back(b);
+        return l;
+    }
+};
