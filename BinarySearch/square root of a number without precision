@@ -1,0 +1,30 @@
+class Solution {
+public:
+int squareroot(int n){
+    int s=0;
+    int e=n;
+    int ans=-1;
+    double mid=s+(e-s)/2;
+    while(s<=e){
+        if((mid*mid)==n){
+            return mid;
+
+        }
+        else if(mid*mid<n){
+            ans=mid;
+            s=mid+1;
+
+        }
+        else{
+            e=mid-1;
+        }
+        mid=s+(e-s)/2;
+    }
+    return ans;
+
+}
+    int mySqrt(int x) {
+        int ans=squareroot(x);
+        return ans;
+    }
+};
