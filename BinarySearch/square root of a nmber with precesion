@@ -1,0 +1,46 @@
+#include <iostream>
+
+using namespace std;
+int squareroot(int n){
+    int s=0;
+    int e=n-1;
+    int ans=-1;
+    int mid=s+(e-s)/2;
+    while(s<=e){
+        if(mid*mid==n){
+            return mid;
+        }
+        else if(mid*mid<n){
+            ans=mid;
+            s=mid+1;
+        }
+        else{
+            e=mid-1;
+        }
+        mid=s+(e-s)/2;
+    }
+    return ans;
+}
+
+int main()
+{
+    int x;
+    cout<<"enter the value of x"<<endl;
+    cin>>x;
+    int ab=squareroot(x);
+    double an=ab;
+double a=0.1;
+    int precesion;
+    cout<<"enter the precision"<<endl;
+    cin>>precesion;
+    for(int i=1;i<=precesion;i++){
+       for(double j=an;j*j<=x;j+=a){
+  an=j;
+       }
+       a=a/10;
+    }
+    cout<<"the root is given by"<<endl;
+    cout<<an<<endl;
+
+    return 0;
+}
