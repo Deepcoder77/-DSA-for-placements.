@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        int s=0;
+        int ans=0;
+        int e=nums.size()-1;
+        int mid=s+(e-s)/2;
+        while(s<=e){
+            if(s==e){
+                return nums[s];
+            }
+            
+            //In this question we focus on the index approach . hamara jo single element hoga wo even index par present hoga
+            if(mid%2==0){
+            
+            
+           // agar hamara mid even hai to uske left ke elements jo pair me honge unka pahla element even index par hoga and dusra element odd index par hoga;
+           
+                if(nums[mid]==nums[mid+1]){
+                    s=mid+2;
+                }
+                
+                //in beleow case mid  hamara single occuring element ho sakta hai ya phir nums[mid],nums[ mid-1] ke equal ho sakta hai so e=mid kiya hai;
+                else{
+                    ans=nums[mid];
+                    e=mid;
+                }
+            }
+             //agar hamara mid odd index hua to nums[mid],nums[mid-1] se compare karenge;
+            else{
+                if(nums[mid]==nums[mid-1]){
+                    s=mid+1;
+                }
+                else{
+                    e=mid-1;
+                }
+            }
+            mid=s+(e-s)/2;
+        }
+        return ans;
+    }
+};
