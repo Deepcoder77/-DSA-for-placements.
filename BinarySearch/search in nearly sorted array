@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+//since the array is nearly sorted (i.e sorted array me element jis position par hona chahiye nearly sorted array me wo mid par hoga ya mid-1 par hoga ya mid+1 par hoga) so isiliye ham element ko mid par and mid-1 par and mid+1 par compare karenge;
+
+// greater than and less than wali condition ham sirf mid par dalenge because mid+1 and mid-1 par condition dalne ka koi matlab nahi hai agar koi element arr[mid+1] se bada hai to wo arr[mid] se bhi bada hoga; 
+
+
+int solve(int arr[],int target,int n){
+  int s=0;
+  int e=n-1;
+  int mid=s+(e-s)/2;
+  while(s<=e){
+    if(arr[mid]==target){
+      return mid;
+    }
+    if(arr[mid-1]==target){
+      return mid-1;
+    }
+    if(arr[mid+1]==target){
+      return mid+1;
+    }
+    else if(arr[mid]<target){
+      s=mid+1;
+    }
+    else if(arr[mid]>target){
+      e=mid-1;
+    }
+    mid=s+(e-s)/2;
+  }
+  return -1;
+}
+int main() {
+  int arr[7]={10,3,40,20,50,80,70};
+  int target=90;
+  int n=7;
+  int ans=solve(arr,target,n);
+cout<<ans<<endl;
+  return 0;
+}
