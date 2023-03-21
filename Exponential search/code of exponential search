@@ -1,0 +1,44 @@
+#include <iostream>
+
+using namespace std;
+int bs(int a[],int n,int s,int e,int x){
+    int mid=s+(e-s)/2;
+    while(s<=e){
+        if(a[mid]==x){
+            return mid;
+        }
+        else if(a[mid]<x){
+            s=mid+1;
+        }
+        else{
+            e=mid-1;
+        }
+        mid=s+(e-s)/2;
+    }
+    return -1;
+}
+
+int exponentialsearch(int a[],int n,int x){
+    int i=1;
+    if(a[0]==x){
+        return 0;
+    }
+    while(i<n&&a[i]<=x){
+        i=i*2;
+    }
+    return bs(a,n,i/2,min(i,n-1),x);
+}
+
+int main()
+{
+    int n=6;
+    int a[6]={2,3,4,5,6,7};
+    int x;
+    cout<<"enter the number to search"<<endl;
+    cin>>x;
+    int ans=exponentialsearch(a,n,x);
+    
+    cout<<"the element is present at the index "<<ans<<endl;
+
+    return 0;
+}
