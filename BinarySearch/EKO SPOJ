@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using ll = long long int;
+#define pb push_back
+#define vlg vector<ll>
+#define vll vector<pair<ll, ll>>
+#define f(n) for(ll i=0;i<(n);i++)
+#define fr(k, n) for(ll j=(k); j<(n); j++)
+#define lcm(a,b) (a*b)/__gcd(a,b)
+#define rev(n) reverse(n.begin(), n.end())
+using namespace std;
+
+
+bool ispossible(vector<ll>v,ll m,ll mid){
+    int woodcollected=0;
+for(int i=0;i<v.size();i++){
+    if(v[i]>mid){
+        woodcollected+=v[i]-mid;
+    }
+}
+    if(woodcollected>=m){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+
+int solve(vector<ll>&v,ll m){
+    ll s=0;
+    //below is the way to find maximum element from vector;
+    ll e=*max_element(v.begin(),v.end());
+    ll mid=s+(e-s)/2;
+    ll ans=-1;
+    while(s<=e){
+        if(ispossible(v,m,mid)){
+            ans=mid;
+            s=mid+1;
+        }
+        else{
+           e=mid-1; 
+        }
+        mid=s+(e-s)/2;
+    }
+    return ans;
+ }
+int main(){
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+    ll n,m;
+    cin>>n>>m;
+    vector<ll>v(n);
+    for(int i=0;i<n;i++){
+      cin>>v[i];
+    }
+    cout<<solve(v,m)<<endl;
+    return 0;
+}
