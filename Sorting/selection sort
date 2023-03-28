@@ -1,0 +1,34 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+    vector<int> arr{5,4,3,2,1};
+    int n = arr.size();
+    //selection sort
+    //outer loop -> (n-1) rounds
+    for(int i=0; i<n-1; i++) {
+
+        int minIndex = i;
+        //inner Loop -> index of minimum element in range i->n
+        for(int j=i+1; j<n; j++) {
+            if(arr[j] < arr[minIndex]) {//yaha arr[i] nahi kar sakte yaha arr[minindex]  karna padega because har step par minindex update ho raha hai so har bar comparison update min index se karna hai na ki arr[i] se
+                //new minimum, then store
+                minIndex = j;
+            }
+        }
+        //swap
+
+//har min index ko compare karke lasr me jo min index milega uso se arr[i] ko swap kar denge;
+        swap(arr[i], arr[minIndex]);
+    }
+
+    //printing 
+    for(int i=0; i<n; i++) {
+        cout << arr[i] << " ";
+    }cout << endl;
+
+  return 0;
+}
+
+Time complexity of selection sort in all three cases is o(n^2);
