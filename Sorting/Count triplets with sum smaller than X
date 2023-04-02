@@ -1,0 +1,32 @@
+#define ll long long
+class Solution{
+	
+	
+	public:
+	long long countTriplets(long long arr[], int n, long long sum)
+	{
+	    // Your code goes here
+	    ll c=0;
+	   sort(arr,arr+n);
+	    for(int i=0;i<n;i++){
+	       int x=sum-arr[i];
+	ll s=i+1;
+	ll e=n-1;
+	while(s<e){
+	    if(arr[s]+arr[e]<x){
+	        c+=e-s;//counter me e-s add kiya hai because array sorted hai so agar arr[s] +arr[e]<x hai to e se kam index ke value ke liye ye tru hoga so ham seedha e-s kar
+          //denge jisme sare se lekar e tak ke value ka counter aa jayega jo ki iss condition ko satisfy karega;
+	        s++;
+	       
+	    }
+	   
+	    else{
+	        e--;
+	    }
+	}
+	    }
+	    return c;
+	}
+		 
+
+};
