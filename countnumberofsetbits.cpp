@@ -13,7 +13,9 @@ cin>>n;
  // to ye number level par to baat ho nahi rahi hai ki n-- kar denge to dusre bit par jaane ke liye hame right shift karna padega;
  //to last wali bit gayab ho jayegi and then uske jagah jo bit aayegi uspar (&) operator functioning karega; 
  while(n!=0){
-    if(n&1){ //this means if n&1==1 then set bit ke count ko incresase kar do
+    if(n&1){ //this means if n&1==1 then set bit ke count ko incresase kar do ye kaam tu xor se bhi l=kar sakta hai if(n^1==0) ans++; i.e 1^1==0 hota hai to agar bit 
+     //set bit rahegi to 1se xor karne par 0 degi;
+     //OR se check karne ke liye if(n|0==1) ans++; agar bit 1 rahegi tabhi 0 ke sath or 1 dega; 
         ans++;
     }
 
