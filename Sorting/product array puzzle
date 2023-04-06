@@ -42,7 +42,7 @@ class Solution{
         
         vector<ll>s(n+1);
         vector<ll>e(n+1);
-         vector<ll>ans(n+1);
+         vector<ll>ans(n);
      
         if(n==1){
            ans[0]=1;
