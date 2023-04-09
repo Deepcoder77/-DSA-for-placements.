@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        int hash[256]={0}; //this array is created to store the asii value of all character; 
+        bool ischarmapped[256]={0}; //this array is created for agar hum jis character of s ko map kar denge the uske corresponding true value store kara lenge;
+
+        for(int i=0;i<s.size();i++){
+            if(hash[s[i]]==0&&ischarmapped[t[i]]==0){  //map karane se pahle check karenge ki agar us index ke corresponding hash array me value 0 hai ki nahi because initially 
+            // har value ke corresponding 0 value store karayee  aur agar wo character dubara aata hai to hum check karenge ki kahi wo pahle se map to nahi hai 
+            //by checking its value 0 aur 1 in ischarmapped array;
+                hash[s[i]]=t[i];
+                ischarmapped[t[i]]=true;
+            }
+        }
+        then hash array me s[i]=t[i] store ho gaya hoga;
+        for(int i=0;i<s.size();i++){
+        
+        //then check karenge agar koi hash [s[i]] ki value t[i] ke eqaul nahi hogi matlab t[i] me koi aisi value hai jo ekbar map ho gayi thi kisi s[i] se then fir 
+        //dusre character se map hona chahti thi jo ki nahi ho sakti so gar aisa hoga to false return kar do;
+             if(char(hash[s[i]])!=t[i]){
+                return false;
+            }
+        }
+         return true;
+    }
+};
