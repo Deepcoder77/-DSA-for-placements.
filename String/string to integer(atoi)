@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int myAtoi(string s) {
+        int ans=0, i=0,sign=1;
+        //jab tak white space aata rahega simply hum aage badte rahenge;
+        while(s[i]==' '){
+            i++;
+        }
+        
+        //then whitespace khatam hone ke baad hum sign check karenge agar - sign raha to sign variable ko -1 kar denge nahi to 
+        agar + sign raha to dign variable ko + sign kar denge;
+        if(i<s.size()&&s[i]=='-'||s[i]=='+'){
+            if(s[i]=='+'){
+                sign=1;
+            }
+            else if(s[i]=='-'){
+                sign=-1;
+            }
+            i++;
+        }
+        
+        //isdigit function is used to check that the current character is string or not;
+        while(i<s.size()&&isdigit(s[i])){
+        
+        //ans ko check karenge kahi wo range ke bahar to nahi
+            if(ans>INT_MAX/10||(ans==INT_MAX/10&&s[i]>'7')){ 
+            
+            //agar INT_MAX se bada hoga ans and sign -1 hoga to INT_MIN return kar denge nahi to agar INT_MAX se bada hoga ans and sign variable=1 hoga to INT_MAX 
+            //return kar denge;
+              return sign==-1?INT_MIN : INT_MAX;
+
+            }
+            ans=ans*10+(s[i]-'0');
+            i++;
+        }
+        return ans*sign;
+    }
+};
