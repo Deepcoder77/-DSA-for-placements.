@@ -1,0 +1,24 @@
+
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+    int ans=0;
+    int i=0;
+    int j=height.size()-1;
+    while(i<=j){
+    //dono walls of the container same hone chahiye isiliye hamne minimum of height[i] and height[j] kiya hai ye length ho gaya and j-i ye breadth ho gaya;
+  int a=min(height[i],height[j])*(j-i);
+ans=max(ans,a);
+
+//kisi  ko bhi move karenge ya i ko ya j ko to hamara breadth to kam hoga hi so lenght jiski chhoti rahegi us index se hatkar dusre index par jayenge;
+        if(height[i]<height[j]){
+            i++;
+        }
+        else{
+            j--;
+        }
+    }
+
+    return ans;
+    }
+};
