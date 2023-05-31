@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+void printdigit(int num){
+if(num==0){
+  return ;
+}
+int ans=num%10;
+
+//if processing part is written before the recurance relation then  digits are printed in reverse order;
+//cout<<ans<<" ";
+int nm=num/10;
+printdigit(nm);
+
+//when processing part is written after recurance relation then digits are printed in right order;
+cout<<ans<<" ";
+
+
+}
+int main() {
+  int num=4667;
+  printdigit(num);
+  return 0;
+}
