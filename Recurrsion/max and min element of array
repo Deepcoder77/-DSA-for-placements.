@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int maxim(int arr[],int n,int i,int& maxi){   //here maxi ko pass by refernce karenge because agar pass by value karenge and maxi ko update karenge to wo within the maxim function hi hoga and main function me change nahi hoga;
+  if(i>=n){
+    return -1 ;
+  }
+if(arr[i]>maxi){
+  maxi=arr[i];
+}
+maxim(arr,n,i+1,maxi);
+return maxi;
+}
+
+
+int minim(int arr[],int n,int i,int& mn){  //here mn ko pass by refernce karenge because agar pass by value karenge and mn ko update karenge to wo within the minim function hi hoga and main function me change nahi hoga;
+  if(i>=n){
+    return -1;
+  }
+if(arr[i]<mn){
+  mn=arr[i];
+}
+minim(arr,n,i+1,mn);
+return mn;
+}
+
+
+int main() {
+  
+  int i=0;
+  int n=5;
+  int mn=INT_MAX;
+int maxi=INT_MIN;
+ int arr[5]={6,3,67,78,6};
+int ans=maxim(arr,n,i,maxi);
+int an=minim(arr,n,i,mn);
+cout<<ans<<endl;
+cout<<an<<endl;
+  return 0;
+}
