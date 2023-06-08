@@ -1,0 +1,38 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        string ans;
+        int i=0;
+        int n=s.length();
+        
+        while(i<n){
+        //jab tak trailing space hai tab tak aage jate raho jab tak hame koi character na mil jata;
+            while(i<n&&s[i]==' ')
+                i++;
+                
+            //trailing space ke aage jate jate agar n ke equal i aa jaye matlab hamari string over ho gayi to break kar jayenge;
+           
+            if(i>=n)
+                break;
+//jab character mil jaye to uske aage se start karo pura word traverse karo jabtak space na mil jaye;
+int j=i+1;
+while(j<n&&s[j]!=' ')
+    j++;
+
+//jaha space mil jaye to waha tak ka substring nikal lo to get the word;
+string st=s.substr(i,j-i);
+
+//agar ans initially empty hai to ans to subastr ke equal kar dop;
+if(ans.length()==0)
+    ans=st;
+
+else
+//this is the main game to get the reverse word string aisa karna se jo substring milta jayega to aage aata jayega aur pahle wala picche jata jay
+ega;
+    ans=st+" "+ans;
+    i=j+1;
+
+        }
+return ans;
+    }
+};
