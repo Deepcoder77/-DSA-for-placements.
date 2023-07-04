@@ -1,0 +1,31 @@
+
+//This code is for that if we traverse the string from left to right
+
+
+#include <iostream>
+using namespace std;
+
+void findlastocclefttoright(string&s,int i,int &ans,char x){
+    
+if(i>=s.length()){
+  return;
+}
+if(s[i]==x){
+  ans=i;
+}
+findlast(s,i+1,ans,x);
+}
+
+int main() {
+
+string s="adghnfjg";
+int ans=-1;
+int i=0;
+char x;
+cout<<"enter the value of x"<<endl;
+cin>>x;
+findlast(s,i,ans,x);//instead of i we pass here 0 directly no need to define i above;
+cout<<ans<<endl;
+
+  return 0;
+}
