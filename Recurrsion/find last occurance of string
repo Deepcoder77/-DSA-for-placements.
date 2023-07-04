@@ -29,3 +29,47 @@ cout<<ans<<endl;
 
   return 0;
 }
+
+
+
+
+
+
+//This code is for when we traverse the string from right to left so isme hame jab char mil jayega to wahi return kar jayenge because ham  picche se chal rahe hai
+//aur jo pahle occurance milega picche se whai last occurance hoga;
+
+
+#include <iostream>
+using namespace std;
+
+void findlastoccprighttoleft(string&s,int i,int &ans,char x){
+    
+if(i<0){
+  return;
+}
+if(s[i]==x){
+  ans=i;
+  return ;//bas yaha milne ke baad return kar jana hai;
+}
+findlastoccprighttoleft(s,i-1,ans,x);
+}
+
+int main() {
+
+string s="adghnfjg";
+int ans=-1;
+
+char x;
+cout<<"enter the value of x"<<endl;
+cin>>x;
+findlastoccprighttoleft(s,s.size()-1,ans,x);
+cout<<ans<<endl;
+
+  return 0;
+}
+
+
+
+
+
+
