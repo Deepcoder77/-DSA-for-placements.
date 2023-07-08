@@ -1,0 +1,51 @@
+//Iterative approach  
+
+class Solution {
+public:
+    string removeOccurrences(string s, string part) {
+        int d=s.find(part);
+        while(d!=string::npos){
+    
+s.erase(d,part.size());
+d=s.find(part);
+        }
+return s;
+
+
+
+
+    }
+};
+
+
+
+// Recurrsive approach
+
+class Solution {
+public:
+void remove(string &s,string&part){
+int d=s.find(part); //jaha se part start hai uaka pahla index d me store ho jayega 
+//i.e according to first test case index of a=2 get stored in d;
+
+if(d!=string::npos){  //this means part mil gya hai s me and uska index d me hai
+    string l=s.substr(0,d);
+    string r=s.substr(d+part.size(),s.size());
+    s=l+r;
+    remove(s,part);
+}
+else{
+    //Base case hai agar d==string::npos hai to matlab part string s me present nahi hai to seedha return kar denge;
+    return;
+}
+}
+
+    string removeOccurrences(string s, string part) {
+        remove(s,part);
+return s;
+
+    }
+};
+
+
+//Time complexity O(n^2);
+//Space complexity O(n/m)
