@@ -1,0 +1,11 @@
+1----m.count()FUNCTION
+
+
+The map::count() is a built-in function in C++ STL which returns 1 if the element with key K is present in the map container. 
+It returns 0 if the element with key K is not present in the container.
+
+SYNTAX-map_name.count(key k);
+
+2-----M[NUMS[I]=I;---by this way we can also insert value in the map in this way index get stored corresponding to nums[i] value;
+  
+
