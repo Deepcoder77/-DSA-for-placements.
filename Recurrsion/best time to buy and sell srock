@@ -1,0 +1,46 @@
+//iterative solution
+
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int ans=0;
+        int n=prices.size();
+        //ham har din buy and sell kar sakte hai to uska fyada uthyenge har din check kar ke add kar denge profit;
+        for(int i=1;i<n;i++){
+if(prices[i]>prices[i-1]){
+    ans+=prices[i]-prices[i-1];
+}
+        }
+        return ans;
+    }
+};
+
+
+
+
+//recurssive solution
+
+class Solution {
+public:
+
+void returnmxprofit(vector<int>& prices,int i,int&minprice,int&mxprofit){
+
+    if(i==prices.size())return;
+if(prices[i]<minprice){
+    minprice=prices[i];
+}
+if((prices[i]-minprice)>mxprofit){
+    mxprofit=prices[i]-minprice;
+}
+returnmxprofit( prices, i+1,minprice,mxprofit);
+}
+
+    int maxProfit(vector<int>& prices) {
+     int minprice=INT_MAX;
+     int mxprofit=INT_MIN;
+     returnmxprofit( prices,0,minprice,mxprofit);
+     return mxprofit;   
+       
+    }
+};
