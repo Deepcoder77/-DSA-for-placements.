@@ -12,3 +12,36 @@ if(prices[i]>prices[i-1]){
         return ans;
     }
 };
+
+
+
+
+//recurssive solution
+
+class Solution {
+public:
+
+void returnmxprofit(vector<int>& prices,int i,int&minprice,int&mxprofit){
+
+    if(i==prices.size())return;
+if(prices[i]<minprice){
+    minprice=prices[i];
+}
+if((prices[i]-minprice)>mxprofit){
+    mxprofit=prices[i]-minprice;
+}
+returnmxprofit( prices, i+1,minprice,mxprofit);
+}
+
+    int maxProfit(vector<int>& prices) {
+     int minprice=INT_MAX;
+     int mxprofit=INT_MIN;
+     returnmxprofit( prices,0,minprice,mxprofit);
+     return mxprofit;   
+       
+    }
+};
+
+
+time complexity=O(n)
+space complexity=O(n)
