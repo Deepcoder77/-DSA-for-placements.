@@ -1,0 +1,29 @@
+class Solution {
+public:
+
+int perfectsquare(int n){
+    if(n==0) return 1;
+    if(n<0)return 0;
+    int ans=INT_MAX;
+    int i=1;
+    int j=sqrt(n);
+    while(i<=j){
+        int perfect=i*i;
+        int numberofperfectsquarep=1+perfectsquare(n-p);
+        if(numberofperfectsquare<ans){
+            ans=numberofperfectsquare;
+        }
+        i++;
+
+    }
+    return ans;
+}
+
+    int numSquares(int n) {
+        int a=perfectsquare(n);
+        return a-1;
+    }
+};
+
+//Time complexity=O(n^n)    very high so this recurrsive solution gives TLE while getting submitted on leetcode
+//Space complexity=O(n)
