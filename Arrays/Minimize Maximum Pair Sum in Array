@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int minPairSum(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int i=0;
+        int j=nums.size()-1;
+        int mx=INT_MIN;
+        while(i<j){
+int sum=nums[i]+nums[j];
+mx=max(mx,sum);
+i++;
+j--;
+        }
+        return mx;
+    }
+};
+
+//ham sort karne ke baad max element ko minimum element ke sath sum karenge tabhi hamara pair sum minimum aayega then un sab pair ke sum ka maximum le lenge;
