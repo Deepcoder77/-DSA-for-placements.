@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+int partition(int*arr,int s,int e){
+  //step 1 choosing pivot element
+  int pivotindex=s;
+  int pivotelement=arr[s];
+
+  //finding right position for pivot element and palce it at the right index;
+
+  int count=0;
+  for(int i=s+1;i<=e;i++){
+    if(arr[i]<=pivotelement){
+      count++;
+    }
+  }
+
+  int rightindex=s+count;
+  swap(arr[pivotindex],arr[rightindex]);
+  pivotindex=rightindex;
+
+  //left me chhote element dalna hai and right me bade element dalna hai pivot element ke;
+  int i=s;
+  int j=e;
+  while(i<pivotindex&&j>pivotindex){
+    while(arr[i]<=pivotelement){
+      i++;
+    }
+    while(arr[j]>pivotelement){
+      j--;
+    }
+    //2 case ho sakte h -> 
+    //A-> you found the elements to swap
+    //B-> no need to swap
+    if(i < pivotindex && j > pivotindex)
+      swap(arr[i],arr[j]);
+  
+
+  }
+return pivotindex;
+
+}
+
+
+
+void quicksort(int*arr,int s,int e){
+//base case
+if(s>=e){
+  return ;
+}
+
+//by partion logic code above we get pivot index
+int pivotindex=partion(arr,s,e);
+
+//recurrsive calls for left and right part of pivot element
+quicksort(arr,s,p-1);  //for left part
+quicksort(arr,p+1,e); //for right part
+}
+
+
+
+
+int main() {
+  int arr[7]={8,6,3,5,4,9,1};
+  quicksort(arr,0,6);
+  cout<<"array after sorting is given by"<<endl;
+for(int i=0;i<7;i++){
+  cout<<arr[i]<<" ";
+}
+  
+  return 0;
+}
+
+
+
+//Time complexity=O(nlogn)
