@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+void permutation(string&s,int i){
+  if(i>=s.length()){
+    cout<<s<<" ";
+
+  }
+  for(int j=i;j<s.length();j++){
+    swap(s[i],s[j]);
+    permutation(s,i+1);  //Recurrsive call for next ith location
+    
+   swap(s[i],s[j]);   //This extra line is for backtracking i.e waps jate samay recurssive call se
+   //hamra original string har step par aata jaye nahi to hamra recusrrive call modified
+   //string par hoga agay ye line nahi rahegi to permutaion repeat karenge i.e smae permutation
+   // bar bar print ho sakta hai;
+    
+  }
+}
+
+int main() {
+  string s="abc";
+  permutation(s,0);
+  return 0;
+}
