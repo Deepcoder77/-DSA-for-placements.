@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+
+void printsubsequence(string&str ,string output,int i){
+  if(i>=str.size()){
+    cout<<output;
+    return;
+    
+  }
+  //exclude
+  printsubsequence(str,output,i+1);
+  //include
+  output.push_back(str[i]);
+  printsubsequence(str,output,i+1);
+
+
+  //note =if we write exclude call below the include call then we have to pop back the current characte
+//output string after the include call made before to exclude call;
+}
+
+int main() {
+string str="abcd";
+string output=" ";
+int i=0;
+printsubsequence(str,output, i);
+
+  return 0;
+}
