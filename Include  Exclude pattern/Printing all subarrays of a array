@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+void printsubarray(vector<int>&v ,vector<int>output,vector<vector<int>>&store,int i){
+  if(i>=v.size()){
+   
+   store.push_back(output);
+    return;
+    
+  }
+  //exclude
+  printsubarray(v,output,store,i+1);
+  //include
+  output.push_back(v[i]);
+  printsubarray(v,output,store,i+1);
+
+
+  
+}
+
+int main() {
+vector<int>v{2,3,4,5,6,7};
+vector<int>output;
+vector<vector<int>>store;
+int i=0;
+printsubarray(v,output,store, i);
+//printing subarrays
+ for (int j = 0; j < store.size(); j++) {
+        for (int k = 0; k < store[j].size(); k++) {
+            cout << store[j][k] << " ";
+        }
+        cout << endl;
+    }
+  return 0;
+}
