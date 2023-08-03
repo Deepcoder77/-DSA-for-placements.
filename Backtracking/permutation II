@@ -1,0 +1,26 @@
+class Solution {
+public:
+ void permutation(vector<int>& nums,int i,set<vector<int>>&ans) {
+        if(i>=nums.size()){
+            ans.insert(nums);
+            return;
+        }
+        for(int j=i;j<nums.size();j++){
+            swap(nums[i],nums[j]);
+            permutation(nums,i+1,ans);
+               swap(nums[i],nums[j]);
+        }
+        
+    }
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        
+         int i=0;
+vector<vector<int>>v;
+        set<vector<int>>ans;
+        permutation(nums,i,ans);
+        for(auto it:ans){
+            v.push_back(it);
+        }
+        return v;
+    }
+};
