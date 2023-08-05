@@ -1,0 +1,71 @@
+class Solution {
+public:
+unordered_map<int,bool> rowcheck;
+    unordered_map<int,bool> upperleftdiagonalcheck;
+    unordered_map<int,bool> lowerleftdiagonalcheck;
+
+
+void printsolution(vector<vector<char>>&board,int n,vector<vector<string>>&ans){
+vector<string>temp;
+for(int i=0;i<n;i++){
+    string output="";
+    for(int j=0;j<n;j++){
+        output.push_back(board[i][j]);
+    }
+    temp.push_back(output);
+}
+ans.push_back(temp);
+
+}
+
+
+bool issafe(int row,int col,vector<vector<char>>&board,int n){
+    if(rowcheck[row]==true) return false;
+    if(upperleftdiagonalcheck[n-1+col-row]==true) return false;
+    if(lowerleftdiagonalcheck[row+col]==true)return false;
+
+    return true;
+}
+
+
+void solve(vector<vector<char>>&board,int col,int n,vector<vector<string>>&ans){
+   
+   //Base case
+    if(col>=n){
+        printsolution(board,n,ans);
+        return;
+    }
+
+    //solving one case
+for(int row=0;row<n;row++){
+    if(issafe(row,col,board,n)){
+        board[row][col]='Q';
+        rowcheck[row]=true;
+        upperleftdiagonalcheck[n-1+col-row]=true;
+lowerleftdiagonalcheck[row+col]=true;
+
+
+//make recursive call for next coloumns
+solve(board,col+1,n,ans);
+
+//backtracking for next possible solution we have to mark all the positions of the board equal to empty and we have to set maps equal to false again;
+ board[row][col]='.';
+ rowcheck[row]=false;
+        upperleftdiagonalcheck[n-1+col-row]=false;
+lowerleftdiagonalcheck[row+col]=false;
+    }
+}
+
+}
+
+
+
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<char>> board(n, vector<char>(n,'.'));
+        vector<vector<string> > ans;
+        int col = 0;
+        solve(board, col, n, ans);
+        return ans;
+
+    }
+};
