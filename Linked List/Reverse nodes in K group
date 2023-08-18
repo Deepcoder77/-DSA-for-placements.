@@ -1,0 +1,58 @@
+class Solution {
+public:
+int getLength(ListNode* head) {
+        int len = 0;
+       ListNode* temp = head;
+        while(temp != NULL) {
+                temp = temp -> next; 
+
+
+                len++;
+        }
+        return len;
+}
+
+ListNode* reverseKNodes(ListNode* &head, int k) {
+        if(head == NULL) {
+                //cout << "LL is empty" << endl;
+                return NULL;
+        }
+        int len = getLength(head);
+        if(k > len) {
+                //cout << "Enter valid value for k " << endl;
+                return head;
+        }
+
+        //it means number ofListNodes in LL is >= k
+        //Step A: reverse first kListNodes of LL
+       ListNode* prev = NULL;
+       ListNode* curr = head;
+       ListNode* forward = curr -> next;
+        int count = 0;
+
+        while(count < k) {
+                forward = curr -> next;
+                curr -> next = prev;
+                prev = curr;
+                curr = forward;
+                count++;
+        }
+
+        //Step B: recursive call
+        if(forward != NULL) {
+                // we still haveListNodes left to reverse
+               ListNode* recursionKaAns = reverseKNodes(forward, k);
+                head -> next = recursionKaAns;
+        }
+
+        //step C: return head of the modified LL
+        return prev;    //here previous ko return kiya hai because list reverse karne ke baad hamara prev pointer hi first node pr point karega after each recursive call;
+}
+
+
+
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        head=reverseKNodes(head,k);
+        return head;
+    }
+};
