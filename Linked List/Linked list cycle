@@ -1,0 +1,31 @@
+//concept  
+//while moving the fast pointer 2step forward by checking if it is NULL or not after each step and moving the slow popinter 1 step when fast move 2 step 
+//if the cycle is present in the list then fast and slow pointer meets at a point i.e where the tail of the list is pointing to form circle at that node 
+//slow and fast pointer meet;
+
+
+
+class Solution {
+public:
+
+bool iscycle(ListNode*&head){
+    ListNode*slow=head;
+    ListNode*fast=head;
+    while(fast!=NULL){
+        fast=fast->next;
+        if(fast!=NULL){
+            fast=fast->next;
+            slow=slow->next;
+        }
+        if(fast==slow){
+            return true;
+        }
+    }
+    return false;
+}
+
+    bool hasCycle(ListNode *head) {
+      bool ans=iscycle(head);
+      return ans;  
+    }
+};
