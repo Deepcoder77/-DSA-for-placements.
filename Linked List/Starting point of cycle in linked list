@@ -1,0 +1,45 @@
+class Solution {
+public:
+ListNode* startingPointLoop(ListNode* &head) {
+    int c=0;
+        if(head == NULL) {
+                
+                return NULL;
+        }
+
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while(fast != NULL) {
+                fast = fast -> next;
+                if(fast != NULL) {
+                        fast = fast -> next;
+                        slow = slow -> next;
+                }
+
+                if(slow == fast ) {    //if slow==fast this means loop is present in linked list;    
+                    c++;
+                       slow = head;  //To find the starting point of list we need to place the slow pointer to head again and move slow and fast pointer one one step only;
+                      
+                       break;
+                }
+        }
+if(c!=0){
+        while(slow != fast) {  //then if moving only to one one step after confirmation that the loop is present or not the point where the fast and slow pinters meet 
+            if(fast->next!=NULL)  //gives the starting point of loop;
+                slow = slow -> next;
+                fast =fast -> next;
+        }
+}
+if(c==0){   //means no loop present i.e while checking for loop and moving slow one step and fast two step we do not get fast==slow;
+    return NULL;
+}
+        return slow;
+        
+
+}
+
+    ListNode *detectCycle(ListNode *head) {
+        return startingPointLoop(head);
+    }
+};
