@@ -28,9 +28,10 @@ if(head->next==NULL){
     prev=temp;
     temp=forward;
     }
-slow->next=prev;
+slow->next=prev;    //by this we connect the reverse list after the mid to the list till mid; i.e slow points to mid Node and prev points to head off the node after 
+//reversing the list after mid  then we connect both part ; only then we make the copmparison in the same list;
     ListNode*temp1=head;
-    ListNode*temp2=mid->next;
+    ListNode*temp2=mid->next;  //mid->next is accessible only if we connect the list(from mid-Next to till last node) after reversing it ;
     while(temp2!=NULL){
         if(temp1->val!=temp2->val){
             return false;
