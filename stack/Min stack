@@ -1,0 +1,48 @@
+
+//concept
+//v.back() means vector ka last element
+//hm vector of pair banayenge usme cuurent value aur us value tak ki min value store karnege ;
+//i.e har index pr 
+//pair.first=value;
+//pair.second=min(value,v.back().second);//picchle wale index pr ab tak ki min value hogi to usse compare karke min dalenge p.second me;
+
+//so our last index jo hoga uska first =top hoga stack ka  and second sabse min value hogi stack ki;
+
+
+
+
+class MinStack {
+public:
+vector<pair<int,int>>v;
+    MinStack() {
+    
+    }
+    
+    void push(int val) {
+        if(v.empty()){
+            pair<int,int>p;
+            p.first=val;
+            p.second=val;
+            v.push_back(p);
+        }
+        else{
+            pair<int,int>p;
+            p.first=val;
+            p.second=min(val,v.back().second);
+            v.push_back(p);
+        }
+    }
+    
+    void pop() {
+       v.pop_back(); 
+    }
+    
+    int top() {
+        return v.back().first;
+    }
+    
+    int getMin() {
+        return v.back().second;
+    }
+};
+
