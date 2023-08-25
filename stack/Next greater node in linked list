@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<int> nextLargerNodes(ListNode* head) {
+        vector<int>v;
+        ListNode*temp=head;
+        while(temp!=NULL){
+            v.push_back(temp->val);
+            temp=temp->next;
+        }
+        int n=v.size();
+        stack<int>s;
+        vector<int>ans(n);
+        s.push(v[n-1]);
+        for(int i=n-2;i>=0;i--){
+if(!s.empty()&&v[i]<s.top()){
+    ans[i]=s.top();
+    s.push(v[i]);
+}
+else{
+    while(!s.empty()&&s.top()<=v[i]){
+        s.pop();
+    }
+    if(s.empty()){
+        ans[i]=0;
+    }
+    else{  //means bigger element mil gaya hai;
+        ans[i]=s.top();
+    }
+    s.push(v[i]);
+}
+
+        }
+        return ans;
+    }
+};
