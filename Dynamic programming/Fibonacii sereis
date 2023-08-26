@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+//Memoisation or topdown
+int fib(int n,vector<int>&dp){
+        if(n<=2){
+                return 1;
+        }
+        if(dp[n]!=-1){
+                return dp[n];
+        }
+        dp[n]=fib(n-1,dp)+fib(n-2,dp);
+return dp[n];
+}
+//tabulation or bottom up 
+
+int tabufib(int n,vector<int>&dp){
+dp[0]=0;
+dp[1]=1;
+if(n==0){
+        return 0;
+}
+for(int i=2;i<=n;i++){
+        dp[i]=dp[i-1]+dp[i-2];
+}
+return dp[n];
+}
+
+//space optimisation
+
+int spacefib(int n,int secprev,int firstprev){
+        if(n<2){
+                return 1;
+        }
+        for(int i=2;i<=n;i++){
+        int curr=firstprev;
+
+        firstprev=firstprev+secprev;
+        secprev=curr;
+        }
+        return firstprev;
+}
+int main(){
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+int n;
+cout<<"enter n"<<endl;
+cin>>n;
+        //vector<int>v(n+1,-1);
+        //int ans=fib(n,v);
+        //cout<< ans<<endl;
+        //int tabans=tabufib(n,v);
+        //cout<<tabans<<endl;
+
+        int spaceans=spacefib(n,0,1);
+cout<<spaceans<<endl;
+        return 0;
+}
