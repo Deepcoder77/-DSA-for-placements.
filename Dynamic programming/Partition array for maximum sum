@@ -1,0 +1,32 @@
+class Solution {
+public:
+
+int mxsum(vector<int>& arr, int k,int index,vector<int>&dp){
+int n=arr.size();
+if(index==n){
+    return 0;
+}
+if(dp[index]!=-1){
+    return dp[index];
+}
+int len=0;
+int ans=INT_MIN;
+
+int mx=INT_MIN;
+for(int i=index;i<min(n,index+k);i++){
+len++;
+mx=max(mx,arr[i]);
+int  sum=len*mx+mxsum(arr,k,i+1,dp);
+ans=max(ans,sum);
+dp[index]=ans;
+}
+return dp[index];
+}
+
+    int maxSumAfterPartitioning(vector<int>& arr, int k) {
+        int index=0;
+        int n=arr.size();
+        vector<int>dp(n+1,-1);
+        return mxsum(arr,k,index,dp);
+    }
+};
