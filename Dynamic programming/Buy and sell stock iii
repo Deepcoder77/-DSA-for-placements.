@@ -1,0 +1,28 @@
+class Solution {
+public:
+int profit(vector<int>&prices,int index,int buy ,int cap,vector<vector<vector<int>>>&dp){
+    if(index==prices.size()||cap==0){
+        return 0;
+    }
+    if(dp[index][buy][cap]!=-1){
+        return dp[index][buy][cap];
+    }
+    int profi=0;
+    if(buy){
+        profi=max(-prices[index]+profit(prices,index+1,0,cap,dp),profit(prices,index+1,1,cap,dp));
+    }
+    else{
+        profi=max(prices[index]+profit(prices,index+1,1,cap-1,dp),profit(prices,index+1,0,cap,dp));
+    }
+    dp[index][buy][cap]= profi;
+    return dp[index][buy][cap];
+}
+    int maxProfit(vector<int>& prices) {
+        int n=prices.size();
+        vector<vector<vector<int>>>dp(n,vector<vector<int>>(2,vector<int>(3,-1)));  here 2 is for buy i.e buy value is either 0 or 1 ;  And 3 cap i.e atmost two means
+        //either 0 or 1 or 2;
+
+        
+        return profit(prices,0,1,2,dp);
+    }
+};
