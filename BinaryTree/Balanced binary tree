@@ -1,0 +1,34 @@
+class Solution {
+public:
+int height(TreeNode*root){
+    if(root==NULL){
+        return 0;
+    }
+    int leftheight=height(root->left);
+    int rightheight=height(root->right);
+
+    return max(leftheight,rightheight)+1;
+
+}
+
+    bool isBalanced(TreeNode* root) {
+     if(root==NULL){
+         return true;
+     }  
+     int left=height(root->left);
+     int right=height(root->right);
+
+     int diff=abs(left-right);
+     bool ans=(diff<=1);
+     bool leftsolve=isBalanced(root->left);
+     bool rightsolve=isBalanced(root->right);
+    
+    if(ans&&leftsolve&&rightsolve){
+        return true;
+    }
+    else{
+        return false;
+    }
+     
+    }
+};
