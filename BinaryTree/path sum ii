@@ -1,0 +1,44 @@
+class Solution {
+public:
+
+
+    void solve(TreeNode* root, int targetSum , int currSum, vector<int> path, vector<vector<int> > &ans) {
+       // cout << "Curr Sum " << currSum << endl;
+        //base case
+        if(root == NULL) {
+            return;
+        }
+        //Leaf Node
+        if(root->left == NULL && root->right == NULL) {
+            //include curr node
+            path.push_back(root->val);
+            currSum += root->val;
+            //check for target sum
+            if(currSum == targetSum) {
+                ans.push_back(path);
+            }
+            
+
+          
+            return;
+        }
+
+        //include curr node
+        path.push_back(root->val);
+        currSum += root->val;
+
+        solve(root->left, targetSum, currSum, path, ans);
+        solve(root->right, targetSum, currSum, path, ans);
+
+        
+    }
+
+    vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
+        int currsum=0;
+        vector<int>path;
+        vector<vector<int>>ans;
+        solve(root,targetSum,currsum,path,ans);
+        return ans;
+
+    }
+};
