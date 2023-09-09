@@ -1,0 +1,41 @@
+class Solution {
+public:
+
+
+    bool solve(TreeNode* root, int targetSum , int currSum) {
+      
+        //base case
+        if(root == NULL) {
+            return false;
+        }
+        //Leaf Node
+        if(root->left == NULL && root->right == NULL) {
+            //include curr node
+    
+            currSum += root->val;
+            //check for target sum
+            if(currSum == targetSum) {
+           return true;
+            }
+        
+           
+        }
+
+        //include curr node
+       
+        currSum += root->val;
+
+    bool left=    solve(root->left, targetSum, currSum);
+     bool right=   solve(root->right, targetSum, currSum);
+return (left||right);  //this means left ya right path compleate hone pr agr sum e equal ayega left ya rihgt kisi me se to true return hoga;
+    }
+       
+
+
+
+
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        int currSum=0;
+        return solve(root,targetSum,currSum);
+    }
+};
