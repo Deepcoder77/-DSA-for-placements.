@@ -1,0 +1,29 @@
+class Solution {
+public:
+int positioninorder(vector<int>& inorder,int element){
+    for(int i=0;i<inorder.size();i++){
+        if(inorder[i]==element){
+            return i;;
+        }
+    }
+    return -1;
+}
+TreeNode*createtree(vector<int>& preorder, vector<int>& inorder,int size,int &preindex,int inorderstartindex,int inorderendindex){
+    if(preindex>=size||inorderstartindex>inorderendindex){
+        return NULL;
+    }
+    int element=preorder[preindex++];
+    TreeNode*root=new TreeNode(element);
+
+    int pos=positioninorder(inorder,element);
+root->left=createtree(preorder,inorder,size,preindex,inorderstartindex,pos-1);
+     root->right=createtree(preorder,inorder,size,preindex,pos+1,inorderendindex);
+     return root;
+}
+
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        int size=preorder.size();
+int preindex=0;
+        return createtree(preorder,inorder,size,preindex,0,size-1);
+    }
+};
