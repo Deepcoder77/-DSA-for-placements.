@@ -1,0 +1,34 @@
+class Solution {
+public:
+int findposition(vector<int>&inorder,int element){
+    for(int i=0;i<inorder.size();i++){
+        if(inorder[i]==element){
+            return i;
+        }
+    }
+    return -1;
+}
+
+TreeNode*createtree(vector<int> &inorder, vector<int> &postorder,int size,int &postindex,int inorderstartindex,int inorderendindex){
+   if(postindex<0||inorderstartindex>inorderendindex){
+        return NULL;
+    }
+    int element=postorder[postindex];
+    postindex--;
+    TreeNode*root=new TreeNode(element);
+
+    int pos=findposition(inorder,element);
+     root->right=createtree(inorder,postorder,size,postindex,pos+1,inorderendindex);
+root->left=createtree(inorder,postorder,size,postindex,inorderstartindex,pos-1);
+   
+     return root;
+}
+
+
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        int size=inorder.size();
+        int postindex=size-1;   //pichhe se traverse karenge so postindex size-1 pr point karega initialy;
+
+        return createtree(inorder,postorder,size,postindex,0,size-1);
+    }
+};
