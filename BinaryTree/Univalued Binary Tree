@@ -1,0 +1,19 @@
+class Solution {
+public:
+bool inorder(TreeNode*root,set<int>&s){
+    if(root==NULL){
+        return true;
+    }
+    s.insert(root->val);
+    inorder(root->left,s);
+    inorder(root->right,s);
+    if(s.size()==1){
+        return true;
+    }
+    return false;
+}
+    bool isUnivalTree(TreeNode* root) {
+        set<int>s;
+        return inorder(root,s);
+    }
+};
