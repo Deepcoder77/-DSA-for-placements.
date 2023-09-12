@@ -1,0 +1,27 @@
+class Solution {
+public:
+void treepath(TreeNode*root,string s,vector<string>&ans){
+    if(root==NULL){
+        return ;
+    }
+//agar leaf node hai to usko bhi path me add krlo then path ko ans vector me push kardo;
+    if(root->left==NULL&&root->right==NULL){
+        s+=to_string(root->val);
+        ans.push_back(s);
+    }
+//current node ko install karo;
+    s+=to_string(root->val);
+    s+="->";
+
+//then left and right ki call
+    treepath(root->left,s,ans);
+    treepath(root->right,s,ans);
+
+}
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string>ans;
+        string s="";
+        treepath(root,s,ans);
+        return ans;
+    }
+};
