@@ -1,0 +1,26 @@
+class Solution {
+public:
+void preorder(TreeNode*root,string &s){
+    if(root==NULL){
+        return ;
+    }
+s+=to_string(root->val);
+if(root->left!=NULL||root->right!=NULL){
+    s+="(";
+    preorder(root->left,s);
+    s+=")";
+}
+
+if(root->right!=NULL){
+    s+="(";
+    preorder(root->right,s);
+    s+=")";
+}
+
+}
+    string tree2str(TreeNode* root) {
+        string s="";
+         preorder(root,s);
+         return s;
+    }
+};
