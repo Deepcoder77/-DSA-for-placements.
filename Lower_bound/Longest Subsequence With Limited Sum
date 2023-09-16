@@ -1,4 +1,8 @@
-lass Solution {
+//Always take care of the condition when iterator point to vector.end();
+
+
+
+class Solution {
 public:
     vector<int> answerQueries(vector<int>& nums, vector<int>& queries) {
         vector<int>psum;
