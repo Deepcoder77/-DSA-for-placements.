@@ -1,0 +1,24 @@
+class Solution {
+public:
+bool isvalid(TreeNode*root,long long int s,long long int e){
+    if(root==NULL){
+        return true;
+    }
+    if(s<root->val&&root->val<e){
+      bool left=isvalid(root->left,s,root->val);
+    bool right=isvalid(root->right,root->val,e);
+    return left&&right;
+    }
+    else{
+        return false;
+    }
+   
+}
+
+    bool isValidBST(TreeNode* root) {
+         long long int s=-4294967296;
+    long long int e=4294967296;
+        bool ans=isvalid(root,s,e);
+        return ans;
+    }
+};
