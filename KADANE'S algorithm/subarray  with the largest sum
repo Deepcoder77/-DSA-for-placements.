@@ -1,0 +1,23 @@
+
+
+//O(n) solution
+space complexuty=O(1)
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int sumsofar=INT_MIN;
+        int currsum=0;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            currsum+=nums[i];
+            if(sumsofar<currsum){
+                sumsofar=currsum;
+            }
+            if(currsum<0){
+                currsum=0;
+            }
+        }
+        return sumsofar;
+    }
+};
