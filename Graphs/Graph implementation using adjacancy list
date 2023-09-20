@@ -31,3 +31,40 @@ graph g;
    g.printlist();
    return 0;
 }
+
+
+//if directed grsph also present
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class graph{
+   public: unordered_map<int,list<pair<int,int>>>adjlist;
+
+   void addedge(int u,int v,int weight,  bool  direction){
+adjlist[u].push_back({v,weight});
+if(direction==0){
+   adjlist[v].push_back({v,weight});
+}
+   }
+void printlist(){
+   for(auto node:adjlist){
+      cout<<node.first<<"-> ";
+      for(auto value:node.second){
+cout<<"("<<value.first<<","<<value.second<<")"<<" ";
+      }
+      cout<<endl;
+   }
+}
+};
+int main(){
+ 
+graph g;
+
+ g.addedge(0,1,3,0);
+ g.addedge(1,2,4,0);
+ g.addedge(0,2,5,0);
+   
+   g.printlist();
+   return 0;
+}
