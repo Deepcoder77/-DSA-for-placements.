@@ -44,7 +44,7 @@ class graph{
    void addedge(int u,int v,int weight,  bool  direction){
 adjlist[u].push_back({v,weight});
 if(direction==0){
-   adjlist[v].push_back({v,weight});
+   adjlist[v].push_back({u,weight});
 }
    }
 void printlist(){
